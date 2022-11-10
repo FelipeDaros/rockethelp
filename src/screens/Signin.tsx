@@ -4,13 +4,21 @@ import Logo from "../assets/logo_primary.svg";
 import Input from "../components/Input";
 import { Envelope, Key } from "phosphor-react-native";
 import Button from "../components/Button";
+import { firebase } from "@react-native-firebase/auth";
+import { Alert } from "react-native";
 
 
 export default function SignIn(){
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const {colors} = useTheme();
+
+  function handleSingIn(){
+    if(!email){
+      return Alert.alert("Entrar", "Informe email ou senha!");
+    }
+  }
 
   return(
     <VStack flex={1} alignItems="center" bg="gray.600" p={8} pt={24}>
@@ -23,7 +31,7 @@ export default function SignIn(){
         placeholder="E-mail" 
         mb={6} 
         InputLeftElement={<Icon color={colors.gray[300]} as={Envelope} ml={4}/> }
-        onChangeText={setName}
+        onChangeText={setEmail}
       />
 
       <Input 
